@@ -1,0 +1,27 @@
+# Here you can set the new alert.
+# {prefix} - Vulcan's prefix (from vulcan's config.yml)
+# {player} - Player who got flagged
+# {check} - Name of the check
+# {type} - Type of the check
+# {vl} - Violation level
+# {maxvl} - Max violation level
+# {severity}
+alert: "{prefix} {severity}{player} flagged {check} ({type}) ({vl}/{maxvl})"
+
+# The point of addon:
+# Key in color is percentage
+severity:
+  enabled: true
+  colors:
+    '0': '&7'
+    '5': '&8'
+    '10': '&a'
+    '20': '&e'
+    '30': '&6'
+    '40': '&c'
+    '50': '&4'
+    '60': '&4'
+    '70': '&4'
+    '80': '&4'
+    '90': '&4'
+    '100': '&4'

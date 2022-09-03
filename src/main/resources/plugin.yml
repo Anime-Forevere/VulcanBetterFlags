@@ -1,0 +1,14 @@
+name: VulcanbetterFlags
+version: '${project.version}'
+main: me.animeforever.vulcanbetterflags.vulcanbetterflags.VulcanbetterFlags
+prefix: VulcanBetterFlags
+authors: [ AnimeForevere ]
+description: Makes the displayment of flags in Vulcan better
+commands:
+  vulcanbetterflags:
+    description: Reloads VulcanBetterFlags config
+    aliases: [ vbf ]
+    usage: /vulcanbetterflags
+    permission: vulcanbetterflags.command
+    permission-message: '&cYou do not have permission to execute this command.'
+    default: true
