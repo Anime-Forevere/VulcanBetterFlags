@@ -5,9 +5,11 @@ import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,9 +56,23 @@ public class flagEvent implements Listener {
                 .replace("{severity}", severityColor)
                 .replace("&", "§");
 
-        String clickCommand = plugin.getConfig().getString("click-command");
+        Player player = event.getPlayer();
+        String hoverText = plugin.getConfig().getStringList("hover-message").stream().map(Object::toString).collect(Collectors.joining("\n"))
+                // .replace("{ping}", getPing(player) + " ms")
+                .replace("{description}", event.getCheck().getDescription())
+                .replace("{info}", event.getInfo())
+                .replace("{player}", event.getPlayer().getName())
+                .replace("&", "§");
         TextComponent message = new TextComponent(text);
-        // TO-DO: Add hover and click events
-        Bukkit.broadcast(text, "vulcan.betteralerts");
+
+        // Hover event to show text
+        message.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponent[]{new TextComponent(hoverText)}));
+        message.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, plugin.getConfig().getString("click-command").replace("{player}", event.getPlayer().getName())));
+
+        Bukkit.getOnlinePlayers().forEach(p -> {
+            if(p.hasPermission("vulcan.betteralerts")) {
+                p.spigot().sendMessage(message);
+            }
+        });
     }
 }

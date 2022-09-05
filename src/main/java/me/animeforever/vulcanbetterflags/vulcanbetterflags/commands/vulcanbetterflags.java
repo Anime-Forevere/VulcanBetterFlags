@@ -8,7 +8,7 @@ import static me.animeforever.vulcanbetterflags.vulcanbetterflags.VulcanbetterFl
 public class vulcanbetterflags implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(!sender.hasPermission("")) {
+        if(!sender.hasPermission("vulcan.reload")) {
             sender.sendMessage("§cYou do not have permission to use this command");
             return false;
         }

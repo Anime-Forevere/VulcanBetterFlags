@@ -4,6 +4,7 @@ main: me.animeforever.vulcanbetterflags.vulcanbetterflags.VulcanbetterFlags
 prefix: VulcanBetterFlags
 authors: [ AnimeForevere ]
 description: Makes the displayment of flags in Vulcan better
+api-version: 1.13
 commands:
   vulcanbetterflags:
     description: Reloads VulcanBetterFlags config
